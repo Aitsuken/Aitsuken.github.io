@@ -1,0 +1,1 @@
+exports.error=function(a){console.log("[err] "+a);process.exit()};exports.warn=function(a){console.log("[wrn] "+a)};exports.message=function(a){console.log("[msg] "+a)};exports.end=function(a){console.log("[end] "+a);process.exit()};

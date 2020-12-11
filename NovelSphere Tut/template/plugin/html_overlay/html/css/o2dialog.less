@@ -1,0 +1,140 @@
+@charset 'utf-8';
+
+@font-face {
+	font-family: 'o2ui';
+	src: url('../font/mplus-2p-medium.woff') format('woff'), url('../font/mplus-2p-medium.ttf') format('truetype');
+}
+
+@disp_w: 1920px;
+@disp_h: 1080px;
+
+// ===================================
+// Mixin
+._dialogBtnSet(@name,@btn-type) {
+	background: url("../dialog/icon_dialog_@{name}.png") no-repeat center center, url("../dialog/bg_menu_@{btn-type}.png") no-repeat;
+	&:hover {
+		background: url("../dialog/icon_dialog_@{name}_hover.png") no-repeat center center , url("../dialog/bg_menu_@{btn-type}_hover.png") no-repeat;
+	}
+	&:active {
+		background: url("../dialog/icon_dialog_@{name}_active.png") no-repeat center center , url("../dialog/bg_menu_@{btn-type}_active.png") no-repeat;
+	}
+	&.active {
+		background: url("../dialog/icon_dialog_@{name}_active.png") no-repeat center center , url("../dialog/bg_menu_@{btn-type}_active.png") no-repeat;
+	}
+	&.disable {
+		background: url("../dialog/icon_dialog_@{name}_disable.png") no-repeat center center , url("../dialog/bg_menu_@{btn-type}_disable.png") no-repeat;
+	}
+}
+
+._transition(@time) {
+	-webkit-transition: all @time ease;
+	   -moz-transition: all @time ease;
+	    -ms-transition: all @time ease;
+	     -o-transition: all @time ease;
+	        transition: all @time ease;
+}
+// ===================================
+
+html, body {
+	overflow: hidden;
+}
+
+#dummy {
+	position: absolute;
+	background: none;
+}
+
+#html-overlay {
+	width: @disp_w;
+	height: @disp_h;
+	position: relative;
+	overflow: hidden;
+	font-family: 'o2ui';
+}
+
+.button {
+	._transition(.25s);
+	&:active{
+	-webkit-transition: none .25s ease;
+	   -moz-transition: none .25s ease;
+	    -ms-transition: none .25s ease;
+	     -o-transition: none .25s ease;
+	        transition: none .25s ease;
+	}
+}
+
+#unclickable {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: #000;
+	top: 0;
+	left: 0;
+	z-index: 9;
+	opacity: 0.4;
+}
+
+#confirm {
+
+	width: 1040px;
+	height: auto;
+	position: absolute;
+	top: 100px;
+	left: (1920-1040)/2px;
+	background: url("../dialog/bg_dialog_loop.png") repeat-y center;
+	z-index: 10;
+	opacity: 0;
+
+	#confirmtxt {
+		font-size: 50px;
+    color: #ffffff;
+    margin: 0 88px 40px;
+    text-align: center;
+	}
+
+	&:before {
+		content: "";
+		width: 1040px;
+		height: 60px;
+		position: absolute;
+		top: -59px;
+		background: url("../dialog/bg_dialog_top.png") no-repeat center;
+	}
+
+	&:after {
+		content: "";
+		width: 1040px;
+		height: 60px;
+		position: absolute;
+		bottom: -59px;
+		background: url("../dialog/bg_dialog_bottom.png") no-repeat bottom center;
+	}
+
+	.btn_b {
+		position: absolute;
+		background: url("../dialog/bg_menu_btn_b.png") no-repeat;
+		width: 413px;
+		height: 111px;
+		left: 49px;
+	}
+
+	#yesbtn {
+		position: relative;
+    float: left;
+		left: 88px;
+		._dialogBtnSet("yes","btn_b");
+	}
+
+	#nobtn {
+		position: relative;
+    left: 539px;
+		._dialogBtnSet("no","btn_b");
+	}
+
+	#okbtn {
+		position: relative;
+    left: 313.5px;
+		._dialogBtnSet("ok","btn_b");
+	}
+
+}

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="plugin/html_overlay/html/css/jquery-ui-o2custom.css">
+<link rel="stylesheet" type="text/css" href="plugin/html_overlay/html/css/o2dialog.css">
+<script src="plugin/html_overlay/html/js/jquery-ui-o2custom.js"></script>
+</head>
+<body>
+
+<div id="dummy"></div>
+<div id="html-overlay">
+	<div id="confirm">
+		<div id="confirmtxt"></div>
+		<div id="yesbtn" class="button btn_b"></div>
+		<div id="nobtn" class="button btn_b"></div>
+		<div id="okbtn" class="button btn_b"></div>
+	</div>
+	<div id="unclickable"></div>
+</div>
+
+
+<script>
+	Overlay(function (callback, args) {
+
+		$('#dummy').hide();
+		$('#html-overlay').hide();
+		$('#unclickable').hide();
+		$('#confirm').hide();
+		if (String(o2dialog.confirm)=='true'){
+			$('#okbtn').hide();
+		}else if (String(o2dialog.confirm)=='false'){
+			$('#yesbtn').hide();
+			$('#nobtn').hide();
+		}
+		$(window).on('resize', resizeElement);
+		// touchmove event を無効
+		$(this).on('touchmove',function(e){
+				e.preventDefault();
+		});
+		// double touch を無効
+		var doubleTouchStartTimestamp = 0;
+		$(this).bindFirst("touchstart", function (event) {
+				var now = Date.now();
+				if (doubleTouchStartTimestamp + 500 > now) {
+						event.preventDefault();
+				} else {
+						doubleTouchStartTimestamp = now;
+				}
+		});
+
+		var dispWidth = 1920,
+				dispHeight = 1080,
+				canvasScale,
+				canvasWidth,
+				canvasHeight,
+				widthScale,
+				heightScale,
+				scale,
+				fadeTime = 250;
+
+		// event 判定用 スマホorタブレットなら touch イベント
+		if (ev.ua.indexOf("iPhone") != -1 || ev.ua.indexOf("iPod") != -1 || ev.ua.indexOf("iPad") != -1 || ev.ua.indexOf("Android") != -1){
+			var _event = {"agent":"sp", "click":"touchend", "scroll":"touchmove", "rclick":"doubletap"},
+					_touch = {
+						startX : 0,
+						startY : 0,
+						moveBeforeY : null,
+						moveX : 0,
+						moveY : 0,
+						moveCapacity : 5,
+						touchflag : false,
+						doubleflag : false
+					}
+
+		}else{
+			var _event = {"agent":"pc", "click":"click", "scroll":"mousewheel", "rclick":"contextmenu"};
+		}
+
+		// scale 値の初期化
+		scaleInit();
+
+	// ===================================================
+	// Functions
+	// ===================================================
+		// scale 値を初期化
+		function scaleInit(){
+			// canvas の表示領域に #main-wrapper を合わせるための scale 値を産出
+			canvasScale = Math.min((innerWidth/config.scWidth),(innerHeight/config.scHeight));
+			// 現在表示中の画面サイズ
+			canvasWidth = config.scWidth * canvasScale,
+			canvasHeight = config.scHeight * canvasScale;
+			widthScale = innerWidth / dispWidth,
+			heightScale = innerHeight / dispHeight;
+			scale = Math.min(widthScale,heightScale);
+		}
+
+		// 画面サイズを設定
+		function resizeElement(){
+			scaleInit();
+
+			var left = (innerWidth - dispWidth * scale) / 2,
+					top = (innerHeight - dispHeight * scale) / 2,
+					dummyWidth = Math.max(dispWidth * scale, canvasWidth)
+					dummyHeight = Math.max(dispHeight * scale, canvasHeight);
+
+			$('#dummy')
+				.css('width', dummyWidth)
+				.css('height', dummyHeight)
+				.css('left', ((innerWidth-dummyWidth)/2) + 'px')
+				.css('top', ((innerHeight-dummyHeight)/2) + 'px');
+
+			$('#html-overlay')
+				.css('transformOrigin','0% 0%')
+				.css('transform','scale('+scale+')')
+				.css('-webkit-transformOrigin','0% 0%')
+				.css('-webkit-transform','scale('+scale+')')
+				.css('-moz-transformOrigin','0% 0%')
+				.css('-moz-transform','scale('+scale+')')
+				.css('left', left + 'px')
+				.css('top', top + 'px');
+		}
+
+	// ---------------------------------------------------
+		// タッチイベント発火OKかどうか判断する
+		function checkTouchEvent(){
+			if (_event['agent'] == 'sp'){
+				// console.log("checktouchevent touchflag:",_touch.touchflag)
+				if (_touch.touchflag){
+					return true;
+				}else{
+					return false;
+				}
+			}else{
+				return true;
+			}
+		}
+
+		// メニュー画面を閉じる
+		function closeWindow(action){
+			$('#dummy').fadeOut(fadeTime*2);
+			$('#html-overlay').fadeOut(function(){
+				$('#html-overlay').off();
+				$('.button').off();
+				callback(action);
+			});
+		}
+	// ---------------------------------------------------
+		function dialogShow(text){
+			var confirm = $('#confirm');
+			$('#confirmtxt').html(text);
+			$('#unclickable').fadeIn(fadeTime);
+			confirm.show().animate({ top: (dispHeight-confirm.height())/2+20, opacity: 1 }, fadeTime, function(){
+				$(this).animate({ top: (dispHeight-confirm.height())/2 }, fadeTime/2);
+				enableEvents();
+			});
+		}
+		function dialogHide(){
+			destroyButtonEvent();
+			var confirm = $('#confirm');
+			confirm.animate({ top: (dispHeight-confirm.height())/2+20 }, fadeTime/2, function(){
+				$(this).animate({ top: 100, opacity: 0 }, fadeTime, function(){
+					$(this).hide();
+				});
+				$('#unclickable').fadeOut(fadeTime);
+			});
+		}
+	// ---------------------------------------------------
+
+		function enableEvents(){
+	// ---------------------------------------------------
+	// touch 系（スマホ）専用 Event
+	// touch後、_touch.moveCapacity で設定した値以上指が動いたらクリックイベントは発動しない機構
+			if (_event['agent'] == 'sp'){
+
+				// タッチ開始時の座標検出
+				$('#html-overlay').on('touchstart', function(event) {
+					_touch.startX = event.originalEvent.changedTouches[0].pageX,
+					_touch.startY = event.originalEvent.changedTouches[0].pageY;
+
+					// まずはclickとみなす
+					_touch.touchflag = true;
+				});
+
+				$('#html-overlay').on('touchend', function(event) {
+					// タッチが終了したら、move前の値を初期化
+					_touch.moveBeforeX = null;
+					_touch.moveBeforeY = null;
+
+					// 二本指タップ成功したらウィンドウを閉じる
+					if (_touch.doubleflag){
+						closeWindow('close');
+					}
+					_touch.doubleflag = false;
+
+				});
+
+				$('#html-overlay').on('touchmove', function(event) {
+					event.preventDefault();
+					_touch.moveX = event.originalEvent.changedTouches[0].pageX;
+					_touch.moveY = event.originalEvent.changedTouches[0].pageY;
+
+					// touchstart -> 許容量以上moveした -> touchend で click とはみなさない
+					if (Math.abs((_touch.moveX-_touch.startX)/scale) >= _touch.moveCapacity || Math.abs((_touch.moveY-_touch.startY)/scale) >= _touch.moveCapacity){
+						_touch.touchflag = false;
+						_touch.doubleflag = false;
+
+					// touchstart -> 許容量以上moveしていない -> touchend で click とみなす
+					}else{
+						_touch.touchflag = true;
+					}
+				});
+
+				// iOS用 二本指タップ検出
+				$('#html-overlay').on('gesturestart', function(event) {
+					_touch.doubleflag = true;
+					_touch.touchflag = true;
+				});
+
+				// 動かなければtrueのまま、gesture発動の場合は touchイベントは実行しない
+				$('#html-overlay').on('gestureend', function(event) {
+					_touch.touchflag = false;
+				});
+			}
+
+				createButtonEvent();
+		}
+
+	// ---------------------------------------------------
+		function createButtonEvent(){
+			$('.button').on(_event['click'],function(){
+				var _this = $(this),
+				action = _this.attr("id"),
+				classname = _this.attr("class");
+
+				if (checkTouchEvent()){
+					if (_this.parents("#confirm").length > 0){
+						if (action == "yesbtn"){
+							dialogHide();
+							closeWindow('yes');
+						}else if (action == "nobtn"){
+							dialogHide();
+							closeWindow('no');
+						}else if (action == "okbtn"){
+							dialogHide();
+							closeWindow('ok');
+						}
+					}
+				}
+			});
+		}
+		function destroyButtonEvent(){
+			$('.button').off(_event['click']);
+		}
+
+		$(document).ready(function() {
+			resizeElement();
+			$('#dummy').show();
+			$('#html-overlay').show(50,function(){
+				dialogShow(o2dialog.text);
+				enableEvents();
+			});
+		});
+
+	});
+</script>
+</body>
+</html>

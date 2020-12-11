@@ -1,0 +1,135 @@
+@charset 'utf-8';
+@font-face {
+  font-family: 'o2ui';
+  src: url('../font/mplus-2p-medium.woff') format('woff'), url('../font/mplus-2p-medium.ttf') format('truetype');
+}
+html,
+body {
+  overflow: hidden;
+}
+#dummy {
+  position: absolute;
+  background: none;
+}
+#html-overlay {
+  width: 1920px;
+  height: 1080px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'o2ui';
+}
+.button {
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -ms-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+.button:active {
+  -webkit-transition: none .25s ease;
+  -moz-transition: none .25s ease;
+  -ms-transition: none .25s ease;
+  -o-transition: none .25s ease;
+  transition: none .25s ease;
+}
+#unclickable {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #000;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  opacity: 0.4;
+}
+#confirm {
+  width: 1040px;
+  height: auto;
+  position: absolute;
+  top: 100px;
+  left: 440px;
+  background: url("../dialog/bg_dialog_loop.png") repeat-y center;
+  z-index: 10;
+  opacity: 0;
+}
+#confirm #confirmtxt {
+  font-size: 50px;
+  color: #ffffff;
+  margin: 0 88px 40px;
+  text-align: center;
+}
+#confirm:before {
+  content: "";
+  width: 1040px;
+  height: 60px;
+  position: absolute;
+  top: -59px;
+  background: url("../dialog/bg_dialog_top.png") no-repeat center;
+}
+#confirm:after {
+  content: "";
+  width: 1040px;
+  height: 60px;
+  position: absolute;
+  bottom: -59px;
+  background: url("../dialog/bg_dialog_bottom.png") no-repeat bottom center;
+}
+#confirm .btn_b {
+  position: absolute;
+  background: url("../dialog/bg_menu_btn_b.png") no-repeat;
+  width: 413px;
+  height: 111px;
+  left: 49px;
+}
+#confirm #yesbtn {
+  position: relative;
+  float: left;
+  left: 88px;
+  background: url("../dialog/icon_dialog_yes.png") no-repeat center center, url("../dialog/bg_menu_btn_b.png") no-repeat;
+}
+#confirm #yesbtn:hover {
+  background: url("../dialog/icon_dialog_yes_hover.png") no-repeat center center, url("../dialog/bg_menu_btn_b_hover.png") no-repeat;
+}
+#confirm #yesbtn:active {
+  background: url("../dialog/icon_dialog_yes_active.png") no-repeat center center, url("../dialog/bg_menu_btn_b_active.png") no-repeat;
+}
+#confirm #yesbtn.active {
+  background: url("../dialog/icon_dialog_yes_active.png") no-repeat center center, url("../dialog/bg_menu_btn_b_active.png") no-repeat;
+}
+#confirm #yesbtn.disable {
+  background: url("../dialog/icon_dialog_yes_disable.png") no-repeat center center, url("../dialog/bg_menu_btn_b_disable.png") no-repeat;
+}
+#confirm #nobtn {
+  position: relative;
+  left: 539px;
+  background: url("../dialog/icon_dialog_no.png") no-repeat center center, url("../dialog/bg_menu_btn_b.png") no-repeat;
+}
+#confirm #nobtn:hover {
+  background: url("../dialog/icon_dialog_no_hover.png") no-repeat center center, url("../dialog/bg_menu_btn_b_hover.png") no-repeat;
+}
+#confirm #nobtn:active {
+  background: url("../dialog/icon_dialog_no_active.png") no-repeat center center, url("../dialog/bg_menu_btn_b_active.png") no-repeat;
+}
+#confirm #nobtn.active {
+  background: url("../dialog/icon_dialog_no_active.png") no-repeat center center, url("../dialog/bg_menu_btn_b_active.png") no-repeat;
+}
+#confirm #nobtn.disable {
+  background: url("../dialog/icon_dialog_no_disable.png") no-repeat center center, url("../dialog/bg_menu_btn_b_disable.png") no-repeat;
+}
+#confirm #okbtn {
+  position: relative;
+  left: 313.5px;
+  background: url("../dialog/icon_dialog_ok.png") no-repeat center center, url("../dialog/bg_menu_btn_b.png") no-repeat;
+}
+#confirm #okbtn:hover {
+  background: url("../dialog/icon_dialog_ok_hover.png") no-repeat center center, url("../dialog/bg_menu_btn_b_hover.png") no-repeat;
+}
+#confirm #okbtn:active {
+  background: url("../dialog/icon_dialog_ok_active.png") no-repeat center center, url("../dialog/bg_menu_btn_b_active.png") no-repeat;
+}
+#confirm #okbtn.active {
+  background: url("../dialog/icon_dialog_ok_active.png") no-repeat center center, url("../dialog/bg_menu_btn_b_active.png") no-repeat;
+}
+#confirm #okbtn.disable {
+  background: url("../dialog/icon_dialog_ok_disable.png") no-repeat center center, url("../dialog/bg_menu_btn_b_disable.png") no-repeat;
+}
