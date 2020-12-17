@@ -1,2 +1,0 @@
-# bokuranomonogatari
- our story
