@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+
+		<title>Your Lie In IAAU</title>
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; script-src 'self' 'unsafe-eval'">
+
+		<meta name="description" content="Super Extra-Spicy story about life in Ala-Too"> 
+		<meta name="author" content="Best-Team">
+		
+		<link rel="shortcut icon" href="favicon.ico" />
+
+		<link rel="manifest" href="manifest.json">
+
+
+		<!-- Monogatari CSS Libraries -->
+		<link rel="stylesheet" href="./engine/core/monogatari.css">
+		<link rel="stylesheet" href="./style/main.css">
+
+		<!-- Third Party JavaScript Libraries -->
+		<script src="./js/vendor/jquery.min.js"></script>
+
+		<!-- Monogatari JavaScript Libraries -->
+		<script src="./engine/debug/debug.js"></script>
+		<script src="./engine/core/monogatari.js"></script>
+		<script src="./js/options.js"></script>
+		<script src="./js/storage.js"></script>
+		<script src="./js/script.js"></script>
+		<script src="./js/main.js"></script>
+
+	</head>
+	<header>
+	<h1>Die Please!</h1>
+	</header>
+	<body>
+
+		<!-- Fallback when JavaScript is not available -->
+		<noscript>
+			<div class="middle text--center">
+				<h2>JavaScript Disabled or not Supported.</h2>
+				<small>To play this game, please enable JavaScript executing or use a different browser.</small>
+			</div>
+		</noscript>
+
+		<div id="monogatari">
+			<visual-novel>
+				<language-selection-screen></language-selection-screen>
+				<loading-screen></loading-screen>
+				<main-screen>
+					<main-menu></main-menu>
+				</main-screen>
+				<game-screen>
+					<dialog-log></dialog-log>
+					<text-box></text-box>
+					<quick-menu></quick-menu>
+				</game-screen>
+				<gallery-screen></gallery-screen>
+				<credits-screen></credits-screen>
+				<load-screen></load-screen>
+				<save-screen></save-screen>
+				<settings-screen></settings-screen>
+				<help-screen></help-screen>
+			</visual-novel>
+		</div>
+	</body>
+
+</html>
