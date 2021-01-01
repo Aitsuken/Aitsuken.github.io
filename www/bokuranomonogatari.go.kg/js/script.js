@@ -77,8 +77,8 @@ monogatari.assets ('scenes', {
 
 // Define the Characters
 monogatari.characters ({
-	'y': {
-		name: 'Yui',
+	'alisa': {
+		name: 'Arisu',
 		color: '#5bcaff'
 	}
 });
