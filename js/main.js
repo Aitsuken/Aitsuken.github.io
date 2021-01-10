@@ -34,5 +34,6 @@ $_ready (() => {
 	monogatari.init ('#monogatari').then (() => {
 		// 3. Inside the init function:
 
+
 	});
 });

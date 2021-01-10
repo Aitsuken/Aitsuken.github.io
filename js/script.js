@@ -46,7 +46,7 @@ monogatari.assets ('gallery', {
 
 // Define the music used in the game.
 monogatari.assets ('music', {
-
+	'welcome':'welcome.mp3'
 });
 
 // Define the voice files used in the game.
@@ -56,12 +56,12 @@ monogatari.assets ('voices', {
 
 // Define the sounds used in the game.
 monogatari.assets ('sounds', {
-
+	
 });
 
 // Define the videos used in the game.
 monogatari.assets ('videos', {
-	
+	'menu':'menu.mp4',
 });
 
 // Define the images used in the game.
@@ -78,9 +78,14 @@ monogatari.assets ('scenes', {
 // Define the Characters
 monogatari.characters ({
 	'u': {
-		name: 'Uran',
+		name: 'Neyz',
 		color: '#5bcaff'
+	},
+	't': {
+		name: 'Takumi',
+		color: 'lightgreen'
 	}
+
 });
 
 monogatari.script ({
@@ -117,6 +122,8 @@ monogatari.script ({
 		'u From your choices depends Takumis fate, from time to time past of characters will be revealed',
 		'u Which will help you to make decisions and use yor judgment properly',
 		'u We hope you have fun and enjoy our monogatari!',
+		't Alright, lets do this!',
+		'end'
 		
 		/*{
 			'Choice': {
