@@ -77,8 +77,8 @@ monogatari.assets ('scenes', {
 
 // Define the Characters
 monogatari.characters ({
-	'alisa': {
-		name: 'Arisu',
+	'u': {
+		name: 'Uran',
 		color: '#5bcaff'
 	}
 });
@@ -87,8 +87,8 @@ monogatari.script ({
 	// The game starts here.
 	'Start': [
 		'show scene #f7f6f6 with fadeIn',
-		'show notification Welcome',
-		{
+		/*'show notification Welcome',*/
+		/*{
 			'Input': {
 				'Text': 'What is your name?',
 				'Validation': function (input) {
@@ -111,9 +111,14 @@ monogatari.script ({
 				},
 				'Warning': 'You must enter a name!'
 			}
-		},
-		'y Hi {{player.name}} Welcome to Monogatari!',
-		{
+		},*/
+		'u Hello "playerNickname", welcome to "My Irregularly Regular life in IAAU!"',
+		'u You will play as Takumi, new IAAU student-freshman from IT department!',
+		'u From your choices depends Takumis fate, from time to time past of characters will be revealed',
+		'u Which will help you to make decisions and use yor judgment properly',
+		'u We hope you have fun and enjoy our monogatari!',
+		
+		/*{
 			'Choice': {
 				'Dialog': 'y Have you already read some documentation?',
 				'Yes': {
@@ -126,6 +131,7 @@ monogatari.script ({
 				}
 			}
 		}
+		*/
 	],
 
 	'Yes': [
