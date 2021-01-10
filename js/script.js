@@ -46,7 +46,7 @@ monogatari.assets ('gallery', {
 
 // Define the music used in the game.
 monogatari.assets ('music', {
-	'welcome':'welcome.mp3'
+	'welcome':'welcome.mp3',
 });
 
 // Define the voice files used in the game.
@@ -66,7 +66,7 @@ monogatari.assets ('videos', {
 
 // Define the images used in the game.
 monogatari.assets ('images', {
-
+	'street':'street.jpg',
 });
 
 // Define the backgrounds for each scene.
@@ -90,6 +90,9 @@ monogatari.characters ({
 
 monogatari.script ({
 	// The game starts here.
+	'main-screen':[
+		'show video menu background',
+	],
 	'Start': [
 		'show scene #f7f6f6 with fadeIn',
 		/*'show notification Welcome',*/
@@ -117,12 +120,15 @@ monogatari.script ({
 				'Warning': 'You must enter a name!'
 			}
 		},*/
+		'play music welcome',
+		'show image street',
 		'u Hello "playerNickname", welcome to "My Irregularly Regular life in IAAU!"',
 		'u You will play as Takumi, new IAAU student-freshman from IT department!',
 		'u From your choices depends Takumis fate, from time to time past of characters will be revealed',
 		'u Which will help you to make decisions and use yor judgment properly',
 		'u We hope you have fun and enjoy our monogatari!',
 		't Alright, lets do this!',
+		'stop music welcome',
 		'end'
 		
 		/*{

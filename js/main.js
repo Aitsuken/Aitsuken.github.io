@@ -27,12 +27,21 @@ const { $_ready, $_ } = Monogatari;
 
 // 1. Outside the $_ready function:
 
-
+	/*<video width="1920" height="1080" controls autoplay>
+	<source src="assets/videos/menu.mp4" type="video/mp4">*/
 $_ready (() => {
 	// 2. Inside the $_ready function:
 
 	monogatari.init ('#monogatari').then (() => {
 		// 3. Inside the init function:
+		monogatari.component ('main-screen').template (() => {
+    return `
+
+        
+        <main-menu></main-menu>
+		'show video main background',
+    `;
+});
 
 
 	});
