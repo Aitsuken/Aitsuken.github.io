@@ -10,5 +10,6 @@
  ## Screenshots
  
  #### Contributors:
- Ulan Sydygaliev
- Nazim Makhmuthodzhaev
+Ulan Sydygaliev,
+
+Nazim Makhmuthodzhaev
