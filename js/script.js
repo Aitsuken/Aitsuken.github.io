@@ -61,7 +61,7 @@ monogatari.assets ('sounds', {
 
 // Define the videos used in the game.
 monogatari.assets ('videos', {
-
+	
 });
 
 // Define the images used in the game.
