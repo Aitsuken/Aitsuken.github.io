@@ -24,12 +24,28 @@ body {
 
 /* Simple Button styles*/
 button {
-
+  border-radius: 8px;
+  margin: 10px;
+  border: 30px;
+  font-size: 25px;
+  color: black;
+  border-color: Siler;
+  background-color: white;
+  border-style: solid;
+  border-width: 3px;
+  padding: 20px 40px 0px 10px;
 }
 
 /* Simple Button Style on Hover */
 button:hover {
-
+  text-decoration: none;
+  color: white;
+  background: aqua;
+  border-radius: 5px;
+  font-weight: normal;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.8;
 }
 
 /* General Styling for Menu Screens */
@@ -87,12 +103,30 @@ button:hover {
 
 /* Choice Buttons style */
 [data-component="choice-container"] button {
+  border-radius: 8px;
+  margin: 10px;
+  border: 30px;
+  font-size: 25px;
+  color: black;
+  border-color: Siler;
+  background-color: white;
+  border-style: solid;
+  border-width: 3px;
+  padding: 20px 40px 0px 10px;
 
 }
 
 /* Choice Button Style on Hover */
 [data-component="choice-container"] button:hover {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  background: aqua;
 
+  border-radius: 5px;
+  font-weight: normal;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.8;
 }
 
 /* Text Box styling */
