@@ -6,10 +6,15 @@
   
   
  ## Presentation
- 
- ## Screenshots
- 
- #### Contributors:
-Ulan Sydygaliev,
 
-Nazim Makhmuthodzhaev
+ Succesful" Presentation
+ https://youtu.be/nEhAKTxwTpY"
+  
+ Cursed presentation(don't check)
+ https://youtu.be/Jff0kynJq54
+ ## Screenshots
+![Screenshot](https://i.imgur.com/QKMZB1V.png)Game Menu
+![Screenshot2](https://imgur.com/r1iZJIi)The Game
+
+ #### Contributors:
+Ulan Sydygaliev
